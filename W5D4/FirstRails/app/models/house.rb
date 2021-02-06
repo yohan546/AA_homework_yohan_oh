@@ -4,10 +4,14 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
-#  person_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  address    :string
 #
 class House < ApplicationRecord
     validates :name, uniqueness: true 
+
+    has_many :residents, 
+        foreign_key: :house_id, 
+        class_name: :Person
 end
